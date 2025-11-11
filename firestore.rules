@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Reglas para la colección de notas
+    match /notes/{noteId} {
+      
+      // Permitir lectura si el usuario está autenticado
+      allow read: if request.auth != null;
+      
+      // Permitir crear si el usuario está autenticado
+      allow create: if request.auth != null;
+      
+      // Permitir actualizar si el usuario está autenticado
+      allow update: if request.auth != null;
+      
+      // Permitir eliminar si el usuario está autenticado
+      allow delete: if request.auth != null;
+    }
+  }
+}
